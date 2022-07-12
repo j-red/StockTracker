@@ -1,0 +1,93 @@
+@charset "utf-8";
+#searchbar {
+	width: 600px;
+	margin-bottom: 20px;
+}
+input[type="search"] {
+	width: 413px;
+}
+#search-input {
+	width: 60%;
+	margin-right: 10px;
+}
+.buffer-top {
+	margin-top: 20px;
+}
+
+.translucent {
+	opacity: 40%;
+	font-size: small;
+}
+
+h1 .translucent {
+	font-size: 20pt;
+}.sort-arrows {
+	color: #999;
+	transition: color 0.1s linear;
+}
+
+.sort-arrows:hover {
+	color: #333;
+	transition: color 0.2s ease-out;
+}
+
+.fa-trash {
+	padding: 5px 20px;
+	color: #999;
+	transition: color 0.1s;
+	cursor: pointer;
+}
+
+.fa-trash:hover {
+	color: red;
+	transition: color .2s;
+}
+
+.ticker-display {
+	font-family: Consolas;
+}
+
+/* tr:nth-child(even) td:nth-child(even),
+tr:nth-child(odd) td:nth-child(odd), 
+tr:nth-child(odd) th:nth-child(odd) {
+  background: #ddd;
+} */
+
+#company-table td:nth-child(even), #company-table th:nth-child(even) {
+  background: #ddd;
+}
+
+#watchlist tr:nth-child(odd) {
+	background: #ddd;
+}
+
+#toggle-star {
+	font-size: 20pt;
+	color: black;
+	padding: 2px 12px;
+	transition: color 0.2s ease-out;
+}.watched {
+	color: gold !important;
+	transition: color 0.2s ease-out;
+}
+
+#toggle-star:hover {
+	color: gold;
+	transition: color 0.2s ease-out;
+}
+
+button:focus {
+	outline: 0;
+}
+
+.day-change {
+	font-size: 9pt;
+}
+
+.pos {
+	color: green;
+}
+
+.neg {
+	color: red;
+}

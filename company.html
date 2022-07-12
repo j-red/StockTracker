@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>sTauk Company Info</title>
+    
+    <!-- FA Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Bootstrap -->
+    <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet" type="text/css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+
+    <!-- API Management -->
+    <script src="js/api.js"></script>
+    <script src="js/company.js"></script>
+
+    <!-- Plotly Graphing Library -->
+    <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/"><span class="translucent">s</span>Tauk Tracker&nbsp;</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+			  <a class="nav-link" href="/">Home </a>
+          </li>
+          <li class="nav-item">
+			  <a class="nav-link" href="/watchlist.html">Watchlist</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  <div class="container mt-2">
+    <div class="row">
+      <div class="col-12">
+          <div class="jumbotron" style="padding: 32px;
+										">
+            <h1 class="text-center">Company Page</h1>
+            <div class="row justify-content-center">
+              <div class="col-auto">
+			  	<form class="form-inline justify-content-center my-2 my-lg-0" id="searchbar" onsubmit="searchForTicker();">
+				  <input type="search" id="search-input" class="form-control" placeholder="Search by company or ticker" aria-label="Search">
+				  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 10px">Search</button>
+        		</form>
+              </div>
+            </div>
+            <p class="text-center buffer-top">View stock information for a specific company.</p>
+        </div>
+      </div>
+		</div>
+
+		<div id="company-info">
+			<h3 id="company-name" style="display: inline; text-transform: uppercase;"></h3>
+			<h5 id="ticker" class="ticker-display" style="margin-left:20px;"></h5>
+		
+      <table id="company-table" width="100%" cellpadding="5px" style="text-align:center;">
+        <tbody>
+        <tr>
+          <th style="border-radius: 10px 10px 0 0" scope="col">Financial Annual Date</th>
+          <th style="border-radius: 10px 10px 0 0" scope="col">Total Revenue</th>
+          <th style="border-radius: 10px 10px 0 0" scope="col">Gross Profit</th>
+          <th style="border-radius: 10px 10px 0 0" scope="col">Earnings per share</th>
+          <th style="border-radius: 10px 10px 0 0" scope="col">Add to Watchlist&nbsp;</th>
+        </tr>
+        <tr>
+          <td id="FAD"></td>
+          <td id="TR" style="border-radius: 0 0 10px 10px;"></td>
+          <td id="GP"></td>
+          <td id="EPS" style="border-radius: 0 0 10px 10px;"></td>
+          <td id="toggle-watchlist"><button id="toggle-star" class="btn" onclick="toggleWatched();">&star;</button></td>
+        </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top: 20px; ">
+        <h4>Pricing over time</h4>
+		<div id="graph-container" style="width: 100%; height: 300px;"></div>
+        
+      </div>
+		</div>
+	</div>
+	  
+    <footer style="position: fixed; bottom: 0; margin-left: auto; margin-right: auto; width: 100%;">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <p>Data provided by <a href="https://site.financialmodelingprep.com/developer/docs/">Financial Modeling Prep</a>.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- <script src="js/popper.min.js"></script> -->
+    <script src="js/bootstrap-4.4.1.js"></script>
+  </body>
+</html>
