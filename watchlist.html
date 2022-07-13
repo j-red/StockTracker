@@ -17,6 +17,11 @@
     <!-- API management -->
     <script src="js/api.js"></script>
     <script src="js/watchlist.js"></script>
+    <script src="js/symbols.js"></script>
+
+    <!-- Unit Testing -->
+    <script src="js/tests.js"></script>
+
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -49,7 +54,7 @@
               </div>
             </div>
             <p class="text-center buffer-top">View, edit, or sort your watched stocks.</p>
-            
+            <div id="error-text" class="text-center" style="color: red; font-size: 9pt;"></div>
           </div>
         </div>
 	  <table width="75%" cellpadding="5px" style="margin-left: auto; margin-right: auto;" id="watchlist">
@@ -79,6 +84,7 @@
           <div class="col-12 text-center">
             <p>Data provided by <a href="https://site.financialmodelingprep.com/developer/docs/">Financial Modeling Prep</a>.</p>
           </div>
+          <button id="test-button" class="btn btn-outline-success" onclick="testWatchlist();">Run Tests</button>
         </div>
       </div>
     </footer>

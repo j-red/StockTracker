@@ -15,7 +15,13 @@ async function loadWatchlist() {
 		// Use an async call to check each Watched stock's price and name to fill in the table.
 		let data = await checkPrice(ticker);
 		console.debug(`Checking ${ticker}...`)
+		
 		console.debug(data);
+		if (data["Error Message"] != undefined) {
+			// If there is an error within the FMP API (most likely daily limit exceeded)
+			$("#error-text").append("<p>Error: daily limit exceeded. Wait until tomorrow or select a new API key in api.js.</p>");
+		}
+
 
 		let price = formatMoney(data[0]['price'], 2);
 		let change = formatMoney(data[0]['change'], 2);
@@ -37,11 +43,13 @@ async function loadWatchlist() {
 		// Get ticker value from the current row.
 		let removedTicker = $(this).parent().siblings("#ticker-row").text(); 
 		
-		// We unwatch the ticker to remove it from the watched list. The table will be drawn on page reload.
+		// We unwatch the ticker to remove it from the watched list.
 		unwatchTicker(removedTicker);
+		saveWatched();
 		
-		// Reload the page.
-		window.location.reload();
+		// Delete the watchedObjects entry and row of deleted entry without needing to reload page
+		watchedObjects.splice($(this).parent().parent().index() - 1, 1); // row index - 1 to account for header row offset
+		$(this).parent().parent().remove(); // remove row from page
 	})
 }
 
@@ -73,12 +81,18 @@ function sortPrice(dir=1) {
 
 async function addToWatchlist() {
 	// Add a new ticker to the watchlist based on the query entered in the searchbar.
-	let queryText = $("#search-input").val();
+	let queryText = $("#search-input").val().trim();
+	
+	if (queryText == "") {
+		// if no query was entered, no need to search
+		return;
+	}
+
 	let ticker = await queryTicker(queryText);
 
-	console.log(ticker);
-
-	watchTicker(ticker);
+	if (ticker) { // if ticker is not null, add it to watchlist
+		watchTicker(ticker);
+	}
 
 	// Reload page to add new ticker.
 	window.location.reload();

@@ -15,6 +15,10 @@
 
     <!-- API Management -->
     <script src="js/api.js"></script>
+    <script src="js/symbols.js"></script>
+
+    <!-- Unit Testing -->
+    <script src="js/tests.js"></script>
 
   </head>
   <body>
@@ -51,6 +55,7 @@
                 </div>
               </div>
             <p class="text-center buffer-top">Search for a company by name or symbol for information on their stocks or to add them to your watchlist.</p>
+            <div id="error-text" class="text-center" style="color: red; font-size: 9pt;"></div>
           </div>
         </div>
       </div>
@@ -61,6 +66,7 @@
           <div class="col-12 text-center">
             <p>Data provided by <a href="https://site.financialmodelingprep.com/developer/docs/">Financial Modeling Prep</a>.</p>
           </div>
+          <button id="test-button" class="btn btn-outline-success" onclick="testHome();">Run Tests</button>
         </div>
       </div>
     </footer>

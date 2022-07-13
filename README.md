@@ -1,17 +1,44 @@
-# Tauk Assignment - Project Requirements
+# Tauk Programming Assessment
+
+## My Solution
+
+For my implementation of this project, I wanted to focus on maintaining a simple and clean interface with efficient functionality. To challenge myself and learn more about the language, I also chose to implement this project purely in JavaScript without only minimal external tools (jQuery, Plotly, and Bootstrap). Rather than implement server-side storage or other difficult cache solutions, I also chose to use the web browser's `localStorage` utility to cache user watchlists and expedite the development process.
+
+As dictated by the project specification, I broke the application down into three separate sections -- the Home, Watchlist, and Company Financial pages. To make the application flexible without relying on redundant code, I made the Company Financial page modular by specifying the stock ticker to display information of in the URL via query parameters, meaning a URL such as `/company.html?tick=TSLA` would display the information for Tesla, Inc.
+On the company page, I also used the open-sourced graphing library Plotly to visualize the line graph of stock price over time.
+
+On each page, I also implemented a button in the lower right-hand corner to execute the unit tests I created for each section. These tests cover several aspects of the program, ensuring that tickers or company names are properly translated to the proper URLs, that API requests are performed properly, and that the application itself behaves as intended. I also use mock HTTP requests to serve debug responses, rather than repeatedly querying the API on unit test execution. Although further tests could be created to more exhaustively evaluate the application, I opted to create a straightforward test suite to demonstrate my abilities given the limited window of time to complete the application.
+
+A brief overview of the files in my solution:
+
+* `./index.html` contains the main page including the search bar and links to other pages.
+* `./watchlist.html` contains the Watchlist page, which populates the watch table based on the watched tickers stored in the browser `localStorage`.
+* `./company.html` contains the Company Financials pages, which load detailed financial information about a specific company based on the ticker encoded in the URL (e.g., `/company.html?tick=TSLA`).
+* `./css/custom.css` contains my custom stylesheet overrides beyond the default Bootstrap CSS.
+* `./js/api.js` contains all of the logic required to perform API lookup calls and search queries. Also manages the cacheing of the watchlist.
+* `./js/watchlist.js` populates the watchlist page with the appropriate values and calls `api.js` to look up the pricing of each stock.
+* `./js/company.js` requests company financial information from `api.js` and populates the Company Financial page tables accordingly.
+* `./js/symbols.js` contains a cached list of all stock tickers supported by the FMP API. Used to prevent unnecessary API calls.
+* `./js/tests.js` contains the unit tests written for each subsection of this application, as well as the logic to execute them.
+
+Below is a list of the project requirements, maintained for future reference.
+
+--------
+
+## Project Requirements
 
 Create a web, or mobile, application that allows a user to easily retrieve financial information from a public company and also create a watchlist of stocks they would like to follow.
 We recommend using the [Financial Modeling Prep API](https://site.financialmodelingprep.com/developer/docs/), which is free to use.
 
 The application must at minimum implement the following pages/views:
 
-## The Home page
+### The Home page
 
 * Should contain a search bar for searching for a company by its name or associated stock ticker symbol.
   * A successful search result should take the user to the Company Financials page, described in the next section.
 * Should show the user’s watchlist of stocks they follow, displaying the company name, current stock price, and stock price percentage change.
 
-## The Company Financials page
+### The Company Financials page
 
 * A line graph displaying the stock price of the company over time, with the date on the x-axis and the stock price on the y-axis of the graph. Feel free to use an open source chart / graphing library or API service.
 * A table with the company’s financial annual information that has the following headers:
@@ -21,7 +48,7 @@ The application must at minimum implement the following pages/views:
   * Earnings per share (EPS)
 * An option to add the company to a stock price watchlist.
 
-## The Watchlist page
+### The Watchlist page
 
 * Displays all the companies and their associated stock prices that the user has added to their watchlist.
 * Ability to delete entries from the watchlist.
@@ -30,45 +57,3 @@ The application must at minimum implement the following pages/views:
 Feel free to take creative liberty to add what you want, in addition to the minimum requirements above, if you have ideas on how to further refine.
 
 The application project must also contain **unit tests** for each page/view. The unit tests should use mock HTTP responses, instead of making actual requests to the external API, as the goal for the tests is to validate the application code and not the external API.
-
-If any questions arise, please feel free to email us. You will have until Thursday, July 14, 2022 at 11:00 am Pacific to complete this assignment. Once you are finished, please send us your submission. We will internally review and from there we can schedule calendar time, so you can present your submission, which includes walking through the code you’ve written.
-
---------
-
-## My approach (writeup)
-
-* Mobile-friendly home page with large search bar
-* Use Adobe XD for front-end web design
-* Use JavaScript API access to manage HTTP requests, API calls, graphing, and more
-
-* Created an account on FMP API to access free key token
-* On first time use, ask user for their API access token. Or, use the default.
-* ~~Stored in local environment variable (Windows) with PowerShell `$env:FMP_API_KEY = '<my key>'` This way, JavaScript will be able to access local variable and make requests without exposing API key to end user~~
-  * Allow the users to set specific API keys if they wish to use their own for specific requests
-* For my project, I use local storage to cache the user's watchlist instead of managing session-based tracking. This will serve as an offline web application that makes the API calls.
-
-## Tests
-
-* Test adding or removing stocks from watchlist is functional
-* Check that localstorage cache is updated properly
-* Valid API key
-* Exceeded request rate
-* Wrong request URL
-* Invalid ticker/stock name
-* Is stock listed on NYSE/NASDAQ? (Needed for API)
-* Ensure stocks with similar names map to proper tickers
-* Check haven't exceeded daily query limit
-
-## Other Notes
-
-* Uncertain if I have the correct value for the "Financial Annual Date" -- treating this as the 'AcceptedDate' in the FMP API?
-  * Or should I use the 'date' field?
-
-Hi Nathan,
-
-Just checking in. I've finished the core of the assessment and implemented most of the functionality -- all I have left is covering some tests and some bugs in the edge cases. I wanted to clarify one requirement from the description -- it says that the company-specific page should display the "Financial Annual Date," but I'm having a bit of trouble determining exactly which field in the API that is meant to refer to. As someone less-versed in the world of stock trading, I was wondering if you could clarify what I should include there?
-
-For the time being, I have that field populated with the 'acceptedDate' from the FMP API. Let me know if that works or if there is a different field I should be using. Thanks.
-
-Best,
-Jared Knofczynski

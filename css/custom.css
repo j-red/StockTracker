@@ -47,12 +47,6 @@ h1 .translucent {
 	font-family: Consolas;
 }
 
-/* tr:nth-child(even) td:nth-child(even),
-tr:nth-child(odd) td:nth-child(odd), 
-tr:nth-child(odd) th:nth-child(odd) {
-  background: #ddd;
-} */
-
 #company-table td:nth-child(even), #company-table th:nth-child(even) {
   background: #ddd;
 }
@@ -90,4 +84,15 @@ button:focus {
 
 .neg {
 	color: red;
+}
+
+footer {
+	background-color: white;
+}
+
+#test-button { 
+	position: fixed; 
+	right: 0; 
+	margin: 0 20px; 
+	bottom: 20px;
 }

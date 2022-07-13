@@ -19,6 +19,10 @@
     <!-- API Management -->
     <script src="js/api.js"></script>
     <script src="js/company.js"></script>
+    <script src="js/symbols.js"></script>
+
+    <!-- Unit Testing -->
+    <script src="js/tests.js"></script>
 
     <!-- Plotly Graphing Library -->
     <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
@@ -57,6 +61,7 @@
               </div>
             </div>
             <p class="text-center buffer-top">View stock information for a specific company.</p>
+            <div id="error-text" class="text-center" style="color: red; font-size: 9pt;"></div>
         </div>
       </div>
 		</div>
@@ -98,11 +103,11 @@
           <div class="col-12 text-center">
             <p>Data provided by <a href="https://site.financialmodelingprep.com/developer/docs/">Financial Modeling Prep</a>.</p>
           </div>
+          <button id="test-button" class="btn btn-outline-success" onclick="testCompany();">Run Tests</button>
         </div>
       </div>
     </footer>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!-- <script src="js/popper.min.js"></script> -->
     <script src="js/bootstrap-4.4.1.js"></script>
   </body>
 </html>
